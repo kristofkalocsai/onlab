@@ -1,0 +1,17 @@
+legeloszoris
+telepiteni TI energiat  http://energia.nu/download/
+access serial port and programmer as regular user:
+sudo touch  /etc/udev/rules.d/99-ti-launchpad.rules
+echo "# EK-TM4C123GXL, EK-TM4C1294XL and EK-LM4F120XL LaunchPad
+		ATTRS{idVendor}=="1cbe", ATTRS{idProduct}=="00fd", MODE="0660",GROUP="dialout"
+	" > /etc/udev/rules.d/99-ti-launchpad.rules
+
+unzip energia
+ooops, have to install Java first
+sudo apt-get install default-jdk
+profit!
+haha
+had to install 32bit compatible libraries :
+sudo apt-get install libc6:i386 libx11-6:i386 libstdc++6:i386 libexpat1:i386
+
+
