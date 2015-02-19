@@ -37,8 +37,16 @@ void setup() {
   if (Ethernet.begin(mac) == 0) {  //if fails:
 
     Serial.println("FAIL!");
-    // no point in carrying on, so do nothing forevermore:
-    for(;;);
+    // trying again forevermore:
+    for(;;){
+        Serial.print("trying again: ");
+        if (Ethernet.begin(mac) == 1){            
+            break;        
+        }
+        Serial.println("FAIL");
+        delay(1000);
+            
+    };
   }
   // if success"
   Serial.println("success");
