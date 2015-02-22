@@ -4,8 +4,8 @@
 // Newer Ethernet shields have a MAC address printed on a sticker on the shield
 byte mac[] = { 0x00, 0x1A, 0xB6, 0x02, 0xC1, 0x38 };
 
-IPAddress thinkpad(192,168,0,16);
-#define port 5007
+IPAddress thinkpad(192,168,1,23);
+#define port 5005
 
 #define LED1 D1_LED
 #define LED2 D2_LED
@@ -32,22 +32,13 @@ void setup() {
 
   // start the serial library:
   Serial.begin(9600);
-  Serial.println("ethernet helloworld");
   Serial.println("Starting Ethernet:");
   // start the Ethernet connection:
   if (Ethernet.begin(mac) == 0) {  //if fails:
 
     Serial.println("FAIL!");
-    // trying again forevermore:
-    for(;;){
-        Serial.print("trying again: ");
-        if (Ethernet.begin(mac) == 1){            
-            break;        
-        }
-        Serial.println("FAIL");
-        delay(1000);
-            
-    };
+    // no point in carrying on, so do nothing forevermore:
+    for(;;);
   }
   // if success"
   Serial.println("success");
@@ -89,8 +80,8 @@ void loop() {
   //if SW1 pressed, send line
   if (digitalRead(SW1) == 0){
 
-      client.print("hello thinkpad!");
-      delay(300);
+      client.println("hello thinkpad!\n");
+      delay(1000);
 
   }
 
@@ -100,9 +91,8 @@ void loop() {
 
     Serial.print("My IP address: ");
     Serial.println(Ethernet.localIP());
-    delay(1000);
-    
+
   }
-  
+  delay(1000);
 
 }
