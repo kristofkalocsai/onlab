@@ -1,0 +1,3 @@
+[submodule "clocksync"]
+	path = clocksync
+	url = https://github.com/kristofkalocsai/clocksync.git
